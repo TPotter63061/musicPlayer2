@@ -25,8 +25,43 @@ public class artistsService {
     public static artists selectById(int id, DatabaseConnection database){
         artists result = null;
 
-        PreparedStatement
+        PreparedStatement statement = database.newStatement("Select artistID, artistName, genre FROM artists WHERE id=?");
+
+        try{
+            if(statement != null){
+                statement.setInt(1, id);
+                ResultSet results = database.executeQuery(statement);
+
+                if(results != null) {
+                    result = new artists(results.getInt("artistID"), results.getString("artistName"), results.getString("genre"));
+                }
+            }
+        }catch (SQLException resultsException){
+            System.out.println("Database select by id error" + resultsException.getMessage());
+        }
+        return result;
     }
-    public static void save(artists artists, DatabaseConnection database){}
-    public static void deleteById(int id, DatabaseConnection database){}
+    public static void save(artists itemToSave, DatabaseConnection database){
+        artists existingItem = null;
+        if(itemToSave.getArtistID() != 0) existingItem = selectById(itemToSave.getArtistID(), database);
+
+        //try{
+          //  if(existingItem == null){
+           //     PreparedStatement statement = database.newStatement("INSERT INTO artists (artistID, artistName, genre) VALUES (?,?,?))");
+                //statement.setS
+          //  }
+      //  }
+    }
+    public static void deleteById(int id, DatabaseConnection database){
+        PreparedStatement statement =  database.newStatement("DELETE FROM artists WHERE id=?");
+
+        try{
+            if(statement != null){
+                statement.setInt(1, id);
+                database.executeUpdate(statement);
+            }
+        }catch (SQLException resultsException){
+            System.out.println("Database deletion error: " + resultsException.getMessage());
+        }
+    }
 }

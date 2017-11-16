@@ -1,11 +1,14 @@
+import Model.DatabaseConnection;
 import javafx.fxml.FXMLLoader;
         import javafx.stage.Stage;
         import javafx.scene.*;
         import javafx.application.Application;
 
 public class loginLaunch extends Application{
+    public static DatabaseConnection database;
     @Override
     public void start(Stage stage) throws Exception {
+        database = new DatabaseConnection("musicPlayerDatabase.sql");
         Parent root = FXMLLoader.load(getClass().getResource("loginscreen.fxml"));
         Scene scene = new Scene(root, 600, 332);
         stage.setTitle("LOGIN");
@@ -15,6 +18,8 @@ public class loginLaunch extends Application{
 
         stage.show();
     }
-    public static void main(String[] args){launch(args);}
+    public static void main(String[] args){
+        launch(args);
+    }
 }
 
