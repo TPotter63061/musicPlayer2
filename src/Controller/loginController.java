@@ -1,3 +1,5 @@
+package Controller;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -32,7 +34,6 @@ public class loginController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("APP_NAME");
-        stage.setScene(scene);
         stage.setResizable(true);
         stage.setOnCloseRequest(e -> System.exit(0));
         stage.show();

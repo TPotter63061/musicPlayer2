@@ -5,6 +5,12 @@ public class artists {
     private String artistName;
     private String genre;
 
+    public artists(int artistID, String artistName, String genre) {
+        this.artistID = artistID;
+        this.artistName = artistName;
+        this.genre = genre;
+    }
+
     public int getArtistID(){return artistID;}
     public void setArtistID(int artistID){this.artistID = artistID;}
 

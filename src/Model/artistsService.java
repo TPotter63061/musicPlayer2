@@ -4,16 +4,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 public class artistsService {
+
     public static void selectAll(List<artists> targetList, DatabaseConnection database){
         PreparedStatement statement = database.newStatement("SELECT artistID, artistName, genre FROM artists ORDER BY artistName");
-
         try{
             if(statement != null){
                 ResultSet results = database.executeQuery(statement);
 
                 if(results != null){
                     while(results.next()){
-                        targetList.add(new artists(results.getInt("artistID"), results.getString("artistName"), results.getString("genre")));
+                        targetList.add(new artists(
+                                results.getInt("artistID"),
+                                results.getString("artistName"),
+                                results.getString("genre")
+                        ));
                     }
                 }
             }
@@ -33,7 +37,10 @@ public class artistsService {
                 ResultSet results = database.executeQuery(statement);
 
                 if(results != null) {
-                    result = new artists(results.getInt("artistID"), results.getString("artistName"), results.getString("genre"));
+                    result = new artists(
+                            results.getInt("artistID"),
+                            results.getString("artistName"),
+                            results.getString("genre"));
                 }
             }
         }catch (SQLException resultsException){
@@ -41,16 +48,28 @@ public class artistsService {
         }
         return result;
     }
-    public static void save(artists itemToSave, DatabaseConnection database){
-        artists existingItem = null;
-        if(itemToSave.getArtistID() != 0) existingItem = selectById(itemToSave.getArtistID(), database);
+    public static void save(artists itemToSave, DatabaseConnection database) {
 
-        //try{
-          //  if(existingItem == null){
-           //     PreparedStatement statement = database.newStatement("INSERT INTO artists (artistID, artistName, genre) VALUES (?,?,?))");
-                //statement.setS
-          //  }
-      //  }
+        artists existingItem = null;
+        if (itemToSave.getArtistID() != 0) existingItem = selectById(itemToSave.getArtistID(), database);
+
+        try {
+            if (existingItem == null) {
+                PreparedStatement statement = database.newStatement("INSERT INTO artists (artistName, genre) VALUES (?,?)");
+                statement.setString(2, itemToSave.getArtistName());
+                statement.setString(3, itemToSave.getGenre());
+                database.executeUpdate(statement);
+            }
+            else {
+                PreparedStatement statement = database.newStatement("UPDATE artists SET artistName = ?, genre = ? WHERE artistID = ?");
+                statement.setInt(1, itemToSave.getArtistID());
+                statement.setString(2, itemToSave.getArtistName());
+                statement.setString(3, itemToSave.getGenre());
+                database.executeUpdate(statement);
+            }
+        } catch (SQLException resultsException) {
+            System.out.println("Database saving error: " + resultsException.getMessage());
+        }
     }
     public static void deleteById(int id, DatabaseConnection database){
         PreparedStatement statement =  database.newStatement("DELETE FROM artists WHERE id=?");
