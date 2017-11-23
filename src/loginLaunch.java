@@ -12,7 +12,7 @@ public class loginLaunch extends Application{
     public static DatabaseConnection database;
     @Override
     public void start(Stage stage) throws Exception {
-        database = new DatabaseConnection("Database 1.db");
+        database = new DatabaseConnection("musicPlayer.db");
         Parent root = FXMLLoader.load(getClass().getResource("loginscreen.fxml"));
         Scene scene = new Scene(root, 600, 332);
         stage.setTitle("LOGIN");
@@ -24,7 +24,7 @@ public class loginLaunch extends Application{
 
         ArrayList<artists> testlist = new ArrayList<>();
         artistsService.selectAll(testlist, database);
-       for(artists a : testlist){
+        for(artists a : testlist){
            System.out.println(a);
         }
 

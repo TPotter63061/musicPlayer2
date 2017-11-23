@@ -28,15 +28,16 @@ public class loginController {
         Stage stage = (Stage) node.getScene().getWindow();
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("mainscreen.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/mainscreen.fxml"));
         } catch (Exception e) {
+            System.out.println(e);
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("APP_NAME");
+        stage.setScene(scene);
         stage.setResizable(true);
         stage.setOnCloseRequest(e -> System.exit(0));
         stage.show();
     }
-
 }
