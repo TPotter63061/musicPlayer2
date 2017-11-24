@@ -56,15 +56,14 @@ public class artistsService {
         try {
             if (existingItem == null) {
                 PreparedStatement statement = database.newStatement("INSERT INTO artists (artistName, genre) VALUES (?,?)");
-                statement.setString(2, itemToSave.getArtistName());
-                statement.setString(3, itemToSave.getGenre());
+                statement.setString(1, itemToSave.getArtistName());
+                statement.setString(2, itemToSave.getGenre());
                 database.executeUpdate(statement);
             }
             else {
                 PreparedStatement statement = database.newStatement("UPDATE artists SET artistName = ?, genre = ? WHERE artistID = ?");
-                statement.setInt(1, itemToSave.getArtistID());
-                statement.setString(2, itemToSave.getArtistName());
-                statement.setString(3, itemToSave.getGenre());
+                statement.setString(1, itemToSave.getArtistName());
+                statement.setString(2, itemToSave.getGenre());
                 database.executeUpdate(statement);
             }
         } catch (SQLException resultsException) {

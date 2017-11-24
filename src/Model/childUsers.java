@@ -7,6 +7,14 @@ public class childUsers {
     private String password;
     private int permissionLevel;
 
+    public childUsers(int childID, int userID, String username, String password, int permissionLevel) {
+        this.childID = childID;
+        this.userID = userID;
+        this.username = username;
+        this.password = password;
+        this.permissionLevel = permissionLevel;
+    }
+
     public int getChildID(){return childID;}
     public void setChildID(int childID){this.childID = childID;}
 

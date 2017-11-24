@@ -21,13 +21,6 @@ public class loginLaunch extends Application{
         stage.setOnCloseRequest(e -> System.exit(0));
 
         stage.show();
-
-        ArrayList<artists> testlist = new ArrayList<>();
-        artistsService.selectAll(testlist, database);
-        for(artists a : testlist){
-           System.out.println(a);
-        }
-
     }
     public static void main(String[] args){
         launch(args);

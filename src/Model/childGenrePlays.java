@@ -5,6 +5,12 @@ public class childGenrePlays {
     private int artistID;
     private int timesPlayed;
 
+    public childGenrePlays(int childID, int artistID, int timesPlayed) {
+        this.childID = childID;
+        this.artistID = artistID;
+        this.timesPlayed = timesPlayed;
+    }
+
     public int getChildID(){return childID;}
     public void setChildID(int childID){this.childID = childID;}
 
