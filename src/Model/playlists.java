@@ -6,6 +6,13 @@ public class playlists {
     private String playlistName;
     private int timesPlayed;
 
+    public playlists(int playlistID, int userID, String playlistName, int timesPlayed) {
+        this.playlistID = playlistID;
+        this.userID = userID;
+        this.playlistName = playlistName;
+        this.timesPlayed = timesPlayed;
+    }
+
     public int getPlaylistID(){return playlistID;}
     public void setPlaylistID(int playlistID){this.playlistID = playlistID;}
 

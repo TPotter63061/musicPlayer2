@@ -44,7 +44,7 @@ public class childUsersService {
                             results.getString("username"),
                             results.getString("password"),
                             results.getInt("permissionLevel")
-                    ));
+                    );
                 }
             }
         }catch (SQLException resultsException){
@@ -59,15 +59,20 @@ public class childUsersService {
 
         try {
             if (existingItem == null) {
-                PreparedStatement statement = database.newStatement("INSERT INTO childUsers (childID, artistID, timesPlayed) VALUES (?,?,?)");
+                PreparedStatement statement = database.newStatement("INSERT INTO childUsers (childID, userID, username, password, permissionLevel) VALUES (?,?,?,?,?)");
                 statement.setInt(0, itemToSave.getChildID());
-                statement.setInt(1, itemToSave.getArtistID());
-                statement.setInt(2, itemToSave.getTimesPlayed());
+                statement.setInt(1, itemToSave.getUserID());
+                statement.setString(2, itemToSave.getUsername());
+                statement.setString(3, itemToSave.getPassword());
+                statement.setInt(4, itemToSave.getPermissionLevel());
                 database.executeUpdate(statement);
             }
             else {
-                PreparedStatement statement = database.newStatement("UPDATE childUsers SET childID, artistID, timesPlayed = ? WHERE childID = ?, artistID = ?");
-                statement.setInt(2, itemToSave.getTimesPlayed());
+                PreparedStatement statement = database.newStatement("UPDATE childUsers SET childID, userID, username, password, permissionLevel = ? WHERE childID = ?, userID = ?");
+                statement.setString(2, itemToSave.getUsername());
+                statement.setString(3, itemToSave.getPassword());
+                statement.setInt(4, itemToSave.getPermissionLevel());
+
                 database.executeUpdate(statement);
             }
         } catch (SQLException resultsException) {

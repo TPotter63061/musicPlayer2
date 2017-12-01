@@ -5,6 +5,12 @@ public class parentGenrePlays {
     private int artistID;
     private int timesPlayed;
 
+    public parentGenrePlays(int userID, int artistID, int timesPlayed) {
+        this.userID = userID;
+        this.artistID = artistID;
+        this.timesPlayed = timesPlayed;
+    }
+
     public int getUserID(){return userID;}
     public void setUserID(int userID){this.userID = userID;}
 

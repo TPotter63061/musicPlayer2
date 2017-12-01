@@ -5,6 +5,12 @@ public class parentTrackPlays {
     private int trackID;
     private int timesPlayed;
 
+    public parentTrackPlays(int userID, int trackID, int timesPlayed) {
+        this.userID = userID;
+        this.trackID = trackID;
+        this.timesPlayed = timesPlayed;
+    }
+
     public int getUserID(){return userID;}
     public void setUserID(int userID){this.userID = userID;}
 
