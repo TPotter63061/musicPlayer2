@@ -6,6 +6,13 @@ public class tracks {
     private String trackName;
     private int length;
 
+    public tracks(int trackID, int artistID, String trackName, int length) {
+        this.trackID = trackID;
+        this.artistID = artistID;
+        this.trackName = trackName;
+        this.length = length;
+    }
+
     public int getTrackID(){return trackID;}
     public void setTrackID(int trackID){this.trackID = trackID;}
 

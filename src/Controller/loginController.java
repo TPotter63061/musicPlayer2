@@ -17,9 +17,6 @@ public class loginController {
         System.out.println("Username: " + usernameField.getText());
         System.out.println("Password: " + passwordField.getText());
             }
-    @FXML protected void handleForgotPasswordButtonPress(ActionEvent event) {
-
-    }
     @FXML protected void handleRegisterButtonPress(ActionEvent event) {
 
     }
