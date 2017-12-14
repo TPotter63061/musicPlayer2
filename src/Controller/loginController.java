@@ -18,7 +18,21 @@ public class loginController {
         System.out.println("Password: " + passwordField.getText());
             }
     @FXML protected void handleRegisterButtonPress(ActionEvent event) {
-
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/registerscreen.fxml"));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Register");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setOnCloseRequest(e -> System.exit(0));
+        stage.show();
     }
     @FXML protected void handleContinueButtonPress(ActionEvent event) {
         Node node = (Node) event.getSource();
